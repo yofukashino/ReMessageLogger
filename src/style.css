@@ -1,0 +1,14 @@
+.deleted .messageContent-2t3eCI {
+  color: white;
+  filter: grayscale(0);
+}
+.deleted {
+  filter: grayscale(1);
+}
+.deleted:hover .messageContent-2t3eCI {
+  color: #f04747 !important;
+  filter: grayscale(0);
+}
+.deleted:hover {
+  filter: grayscale(0);
+}

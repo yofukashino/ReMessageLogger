@@ -1,26 +1,19 @@
-import { Injector, Logger, webpack } from "replugged";
+import { Injector, Logger, common, settings } from "replugged";
+import { defaultSettings } from "./lib/consts";
+import "./style.css";
+export const PluginLogger = Logger.plugin("ReMessageLogger");
+export const SettingValues = await settings.init("Tharki.ReMessageLogger", defaultSettings);
+export const PluginInjector = new Injector();
+export const { fluxDispatcher: FluxDispatcher } = common;
+import { registerSettings } from "./Components/Settings";
+import { applyInjections } from "./patches/index";
+export const start = (): void => {
+  registerSettings();
+  applyInjections();
+};
 
-const inject = new Injector();
-const logger = Logger.plugin("PluginTemplate");
+export const stop = (): void => {
+  PluginInjector.uninjectAll();
+};
 
-export async function start(): Promise<void> {
-  const typingMod = await webpack.waitForModule<{
-    startTyping: (channelId: string) => void;
-  }>(webpack.filters.byProps("startTyping"));
-  const getChannelMod = await webpack.waitForModule<{
-    getChannel: (id: string) => {
-      name: string;
-    };
-  }>(webpack.filters.byProps("getChannel"));
-
-  if (typingMod && getChannelMod) {
-    inject.instead(typingMod, "startTyping", ([channel]) => {
-      const channelObj = getChannelMod.getChannel(channel);
-      logger.log(`Typing prevented! Channel: #${channelObj?.name ?? "unknown"} (${channel}).`);
-    });
-  }
-}
-
-export function stop(): void {
-  inject.uninjectAll();
-}
+export { Settings } from "./Components/Settings";
