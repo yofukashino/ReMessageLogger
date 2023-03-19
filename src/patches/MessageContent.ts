@@ -7,7 +7,6 @@ export const patchMessageContents = (): void => {
     MessageContentType,
     "type",
     (args: [{ content: string[]; message: Types.Message }], res: Types.ReactElement) => {
-      console.log(args, res);
       res.props.children = [
         args[0]?.message?.editHistory?.length > 0
           ? args[0]?.message?.editHistory?.map((edit) => MessageLoggerApi.renderEdit(edit))
