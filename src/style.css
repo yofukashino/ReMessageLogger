@@ -1,14 +1,12 @@
-.deleted .messageContent-2t3eCI {
-  color: white;
-  filter: grayscale(0);
+.reMessageLoggerDeleted .messageContent-2t3eCI {
+  color: #f04747;
 }
-.deleted {
+.reMessageLoggerDeleted:not(.markup-eYLPri.messageContent-2t3eCI) {
   filter: grayscale(1);
 }
-.deleted:hover .messageContent-2t3eCI {
-  color: #f04747 !important;
-  filter: grayscale(0);
+.reMessageLoggerDeleted:hover .messageContent-2t3eCI {
+  color: #ffffff !important;
 }
-.deleted:hover {
+.reMessageLoggerDeleted:hover:not(.markup-eYLPri.messageContent-2t3eCI) {
   filter: grayscale(0);
 }

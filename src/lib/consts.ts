@@ -1,4 +1,5 @@
 export const defaultSettings = {
-  dontSaveData: false,
-  cachedMessageRecord: [],
+  ignoreSelf: false,
+  ignoreBots: false,
+  ignorePurges: false,
 };

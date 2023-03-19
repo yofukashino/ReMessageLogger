@@ -1,37 +1,7 @@
 export { types as DefaultTypes } from "replugged";
 import { types as DefaultTypes } from "replugged";
-export { ReactElement } from "react";
-import { ReactElement } from "react";
-export interface messageDiv {
-  "aria-describedby": undefined | string;
-  "aria-labelledby": string;
-  "aria-roledescription": string;
-  "aria-setsize": number;
-  childrenAccessories: ReactElement;
-  childrenButtons: ReactElement;
-  childrenExecutedCommand: null;
-  childrenHeader: ReactElement;
-  childrenHighlight: null;
-  childrenMessageContent: ReactElement;
-  childrenRepliedMessage: null | ReactElement;
-  childrenSystemMessage: null | ReactElement;
-  className: string;
-  compact: boolean;
-  "data-list-item-id": string;
-  hasReply: boolean;
-  hasThread: boolean;
-  isSystemMessage: boolean;
-  onBlur: DefaultTypes.AnyFunction;
-  onClick: DefaultTypes.AnyFunction;
-  onContextMenu: DefaultTypes.AnyFunction;
-  onFocus: DefaultTypes.AnyFunction;
-  onKeyDown: DefaultTypes.AnyFunction;
-  onMouseLeave: DefaultTypes.AnyFunction;
-  onMouseMove: DefaultTypes.AnyFunction;
-  role: string;
-  tabIndex: number;
-  zalgo: boolean;
-}
+export { ReactElement, ComponentClass } from "react";
+
 export interface User {
   avatar: string;
   avatarDecoration: undefined | string;
@@ -64,7 +34,8 @@ export interface User {
   tag: string;
 }
 export interface Message {
-  isDeleted?: boolean;
+  deleted?: boolean;
+  editHistory: [];
   activity: null | string;
   application: null | object;
   applicationId: null | string;
@@ -119,7 +90,8 @@ export interface Message {
   state: string;
   stickerItems: unknown[];
   stickers: unknown[];
-  timestamp: object;
+  timestamp: string;
+  edited_timestamp?: string;
   tts: boolean;
   type: number;
   webhookId: null | string;
@@ -137,21 +109,195 @@ export interface MessageStore {
   jumpedMessageId: DefaultTypes.AnyFunction;
   whenReady: DefaultTypes.AnyFunction;
 }
-export interface MessageDeleteDispatch {
+export interface BigIntUtils {
+  add: DefaultTypes.AnyFunction;
+  combine: DefaultTypes.AnyFunction;
+  deserialize: DefaultTypes.AnyFunction;
+  equals: DefaultTypes.AnyFunction;
+  filter: DefaultTypes.AnyFunction;
+  getFlag: DefaultTypes.AnyFunction;
+  has: DefaultTypes.AnyFunction;
+  hasAny: DefaultTypes.AnyFunction;
+  invert: DefaultTypes.AnyFunction;
+  remove: DefaultTypes.AnyFunction;
+}
+export interface moment extends DefaultTypes.AnyFunction {
+  momentProperties: DefaultTypes.AnyFunction;
+  suppressDeprecationWarningsdeprecationHandler: DefaultTypes.AnyFunction;
+  parseTwoDigitYear: DefaultTypes.AnyFunction;
+  createFromInputFallback: DefaultTypes.AnyFunction;
+  ISO_8601: DefaultTypes.AnyFunction;
+  RFC_2822: DefaultTypes.AnyFunction;
+  updateOffset: DefaultTypes.AnyFunction;
+  defaultFormat: DefaultTypes.AnyFunction;
+  defaultFormatUtc: DefaultTypes.AnyFunction;
+  lang: DefaultTypes.AnyFunction;
+  langData: DefaultTypes.AnyFunction;
+  version: DefaultTypes.AnyFunction;
+  fn: DefaultTypes.AnyFunction;
+  min: DefaultTypes.AnyFunction;
+  max: DefaultTypes.AnyFunction;
+  now: DefaultTypes.AnyFunction;
+  utc: DefaultTypes.AnyFunction;
+  unix: DefaultTypes.AnyFunction;
+  months: DefaultTypes.AnyFunction;
+  isDate: DefaultTypes.AnyFunction;
+  locale: DefaultTypes.AnyFunction;
+  invalid: DefaultTypes.AnyFunction;
+  duration: DefaultTypes.AnyFunction;
+  isMoment: DefaultTypes.AnyFunction;
+  weekdays: DefaultTypes.AnyFunction;
+  parseZone: DefaultTypes.AnyFunction;
+  localeData: DefaultTypes.AnyFunction;
+  isDuration: DefaultTypes.AnyFunction;
+  monthsShort: DefaultTypes.AnyFunction;
+  weekdaysMin: DefaultTypes.AnyFunction;
+  defineLocale: DefaultTypes.AnyFunction;
+  updateLocale: DefaultTypes.AnyFunction;
+  locales: DefaultTypes.AnyFunction;
+  weekdaysShort: DefaultTypes.AnyFunction;
+  normalizeUnits: DefaultTypes.AnyFunction;
+  relativeTimeRounding: DefaultTypes.AnyFunction;
+  relativeTimeThreshold: DefaultTypes.AnyFunction;
+  calendarFormat: DefaultTypes.AnyFunction;
+  HTML5_FMT: DefaultTypes.AnyFunction;
+}
+export interface MessageDataStore extends DefaultTypes.AnyFunction {
+  clear: DefaultTypes.AnyFunction;
+  clearCache: DefaultTypes.AnyFunction;
+  commit: DefaultTypes.AnyFunction;
+  forEach: DefaultTypes.AnyFunction;
+  get: DefaultTypes.AnyFunction;
+  getOrCreate: (channelId: string) => MessageCache;
+  hasPresent: DefaultTypes.AnyFunction;
+  addCachedMessages: DefaultTypes.AnyFunction;
+  findNewest: DefaultTypes.AnyFunction;
+  findOldest: DefaultTypes.AnyFunction;
+  first: DefaultTypes.AnyFunction;
+  focusOnMessage: DefaultTypes.AnyFunction;
+  forAll: DefaultTypes.AnyFunction;
+  getAfter: DefaultTypes.AnyFunction;
+  getByIndex: DefaultTypes.AnyFunction;
+  getManyAfter: DefaultTypes.AnyFunction;
+  getManyBefore: DefaultTypes.AnyFunction;
+  has: DefaultTypes.AnyFunction;
+  hasAfterCached: DefaultTypes.AnyFunction;
+  hasBeforeCached: DefaultTypes.AnyFunction;
+  indexOf: DefaultTypes.AnyFunction;
+  jumpToMessage: DefaultTypes.AnyFunction;
+  jumpToPresent: DefaultTypes.AnyFunction;
+  last: DefaultTypes.AnyFunction;
+  loadComplete: DefaultTypes.AnyFunction;
+  loadFromCache: DefaultTypes.AnyFunction;
+  loadStart: DefaultTypes.AnyFunction;
+  map: DefaultTypes.AnyFunction;
+  merge: DefaultTypes.AnyFunction;
+  mutate: DefaultTypes.AnyFunction;
+  receiveMessage: DefaultTypes.AnyFunction;
+  receivePushNotification: DefaultTypes.AnyFunction;
+  reduce: DefaultTypes.AnyFunction;
+  remove: DefaultTypes.AnyFunction;
+  removeMany: DefaultTypes.AnyFunction;
+  replace: DefaultTypes.AnyFunction;
+  reset: DefaultTypes.AnyFunction;
+  toArray: DefaultTypes.AnyFunction;
+  truncate: DefaultTypes.AnyFunction;
+  truncateBottom: DefaultTypes.AnyFunction;
+  truncateTop: DefaultTypes.AnyFunction;
+  update: (messageId: string, anyFunction: DefaultTypes.AnyFunction) => MessageCache;
+  _clearMessages: DefaultTypes.AnyFunction;
+  _merge: DefaultTypes.AnyFunction;
+  _channelMessages: {
+    [key: string]: MessageCache;
+  };
+}
+export interface MessageCache extends MessageDataStore {
+  cached: boolean;
+  channelId: string;
+  error: boolean;
+  hasFetched: boolean;
+  hasMoreAfter: boolean;
+  hasMoreBefore: boolean;
+  jumpFlash: boolean;
+  jumpReturnTargetId: null | string;
+  jumpSequenceId: number;
+  jumpTargetId: null | string;
+  jumpTargetOffset: number;
+  jumpType: string;
+  jumped: boolean;
+  jumpedToPresent: boolean;
+  loadingMore: boolean;
+  ready: boolean;
+  revealedMessageId: null | string;
+  _after: object;
+  _before: object;
+  _array: Message[];
+  _map: object;
+}
+export interface MessageStoreActionHandler {
+  actionHandler: {
+    CACHE_LOADED: DefaultTypes.AnyFunction;
+    CACHE_LOADED_LAZY: DefaultTypes.AnyFunction;
+    CHANNEL_DELETE: DefaultTypes.AnyFunction;
+    CLEAR_MESSAGES: DefaultTypes.AnyFunction;
+    CONNECTION_OPEN: DefaultTypes.AnyFunction;
+    GUILD_DELETE: DefaultTypes.AnyFunction;
+    GUILD_MEMBERS_CHUNK: DefaultTypes.AnyFunction;
+    I18N_LOAD_SUCCESS: DefaultTypes.AnyFunction;
+    LOAD_MESSAGES: DefaultTypes.AnyFunction;
+    LOAD_MESSAGES_FAILURE: DefaultTypes.AnyFunction;
+    LOAD_MESSAGES_SUCCESS: DefaultTypes.AnyFunction;
+    LOAD_MESSAGES_SUCCESS_CACHED: DefaultTypes.AnyFunction;
+    LOAD_MESSAGE_INTERACTION_DATA_SUCCESS: DefaultTypes.AnyFunction;
+    LOCAL_MESSAGES_LOADED: DefaultTypes.AnyFunction;
+    LOGOUT: DefaultTypes.AnyFunction;
+    MESSAGE_CREATE: DefaultTypes.AnyFunction;
+    MESSAGE_DELETE: DefaultTypes.AnyFunction;
+    MESSAGE_DELETE_BULK: DefaultTypes.AnyFunction;
+    MESSAGE_REACTION_ADD: DefaultTypes.AnyFunction;
+    MESSAGE_REACTION_REMOVE: DefaultTypes.AnyFunction;
+    MESSAGE_REACTION_REMOVE_ALL: DefaultTypes.AnyFunction;
+    MESSAGE_REACTION_REMOVE_EMOJI: DefaultTypes.AnyFunction;
+    MESSAGE_REVEAL: DefaultTypes.AnyFunction;
+    MESSAGE_SEND_FAILED: DefaultTypes.AnyFunction;
+    MESSAGE_UPDATE: DefaultTypes.AnyFunction;
+    OVERLAY_INITIALIZE: DefaultTypes.AnyFunction;
+    RELATIONSHIP_ADD: DefaultTypes.AnyFunction;
+    RELATIONSHIP_REMOVE: DefaultTypes.AnyFunction;
+    THREAD_CREATE_LOCAL: DefaultTypes.AnyFunction;
+    THREAD_DELETE: DefaultTypes.AnyFunction;
+    THREAD_MEMBER_LIST_UPDATE: DefaultTypes.AnyFunction;
+    TRUNCATE_MESSAGES: DefaultTypes.AnyFunction;
+    UPLOAD_START: DefaultTypes.AnyFunction;
+    USER_SETTINGS_PROTO_UPDATE: DefaultTypes.AnyFunction;
+  };
+  name: string;
+  storeDidChange: DefaultTypes.AnyFunction;
+}
+export interface deleteData {
   channelId: string;
   guildId: string;
-  id: string;
+  id?: string;
+  ids?: string[];
   type: string;
-  RMLD?: boolean;
-  [index: string]: unknown;
+}
+export interface editData {
+  guildId: string;
+  message: Message;
+  typed: string;
+}
+export interface editMessage {
+  timestamp: Date;
+  content: string;
 }
 export interface GenericModule {
   [key: string]: DefaultTypes.AnyFunction;
 }
-export interface MessageConstructor {
+export interface GenericExport {
   exports: GenericModule;
 }
 export interface Settings {
-  dontSaveData: boolean;
-  cachedMessageRecord: Message[];
+  ignoreSelf: boolean;
+  ignoreBots: boolean;
+  ignorePurges: boolean;
 }

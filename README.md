@@ -1,9 +1,8 @@
 ### ReMessageLogger
 
-Double-Click someone elses message to quick reply, double click your own to quick edit, and double
-click while holding a key to copy content.
+Temporarily logs deleted and edited messages.
 
-Also hide the options you dont need from context menu (can be turned on in plugins setting).
+Nothing is planned yet.
 
 Direct Download Link:
 [Tharki.ReMessageLogger.asar](https://github.com/Tharki-God/ReMessageLogger/releases/latest/download/Tharki.ReMessageLogger.asar)
@@ -13,7 +12,6 @@ Install Link:
 
 ![image](https://tharki-god.github.io/files-random-host/bdpluginsassets/ReMessageLogger.gif)
 
-<sub>Inspired by a Aliucord Kotlin plugin made by
-[Vendicated](https://github.com/Vendicated/AliucordPlugins/tree/main/TapTap).</sub>
+<sub>something idk yet.</sub>
 
 > For Contributing: [Make a pr thats all.]
