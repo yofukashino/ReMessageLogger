@@ -14,9 +14,7 @@ export const patchEditUtilsModule = (): void => {
       res.deleted = args[0].deleted;
       res.editHistory = args[0].editHistory;
       res.attachments = args[0].attachments;
-      console.log(args, res);
       return res;
     },
   );
-  console.log("pathced editor 3 ");
 };

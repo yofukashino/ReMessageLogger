@@ -1,12 +1,25 @@
+.reMessageLoggerDeleted [class^="buttons"] {
+  display: none;
+}
+.reMessageLoggerDeleted img,
+.reMessageLoggerDeleted h3 {
+  filter: grayscale(1);
+}
+
+.reMessageLoggerDeleted:hover img,
+.reMessageLoggerDeleted:hover h3 {
+  filter: grayscale(0);
+}
 .reMessageLoggerDeleted .messageContent-2t3eCI {
   color: #f04747;
-}
-.reMessageLoggerDeleted:not(.markup-eYLPri.messageContent-2t3eCI) {
-  filter: grayscale(1);
 }
 .reMessageLoggerDeleted:hover .messageContent-2t3eCI {
   color: #ffffff !important;
 }
-.reMessageLoggerDeleted:hover:not(.markup-eYLPri.messageContent-2t3eCI) {
-  filter: grayscale(0);
+
+.theme-dark .messagelogger-edited {
+  filter: brightness(75%);
+}
+.theme-light .messagelogger-edited {
+  opacity: 0.5;
 }

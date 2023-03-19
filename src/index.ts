@@ -4,7 +4,7 @@ import "./style.css";
 export const PluginLogger = Logger.plugin("ReMessageLogger");
 export const SettingValues = await settings.init("Tharki.ReMessageLogger", defaultSettings);
 export const PluginInjector = new Injector();
-export const { fluxDispatcher: FluxDispatcher, users: UserStore } = common;
+export const { fluxDispatcher: FluxDispatcher, users: UserStore, parser: Parser } = common;
 import { registerSettings } from "./Components/Settings";
 import { applyInjections } from "./patches/index";
 export const start = (): void => {

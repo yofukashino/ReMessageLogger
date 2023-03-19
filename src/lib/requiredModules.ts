@@ -37,3 +37,20 @@ export const { exports: MessageDomainModel } = webpack.getBySource(
   "isFirstMessageInForumPost=function",
   { raw: true },
 ) as unknown as Types.GenericExport;
+export const MessageClassesAndStyles = webpack.getByProps(
+  "edited",
+  "communicationDisabled",
+  "isSystemMessage",
+) as unknown as Types.MessageClassesAndStyles;
+export const LocaleManager = webpack.getByProps(
+  "Messages",
+  "_chosenLocale",
+) as unknown as Types.LocaleManager;
+export const MessageContentsModule = webpack.getBySource(
+  /\.SOURCE_MESSAGE_DELETED.*\.Messages.SOURCE_MESSAGE_DELETED/,
+);
+export const MessageContentType = webpack.getExportsForProps(MessageContentsModule, [
+  "type",
+  "compare",
+  "$$typeof",
+]) as unknown as Types.MessageContentType;

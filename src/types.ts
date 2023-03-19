@@ -290,6 +290,110 @@ export interface editMessage {
   timestamp: Date;
   content: string;
 }
+export interface LocaleManager {
+  Messages: DefaultTypes.ObjectExports;
+  loadPromise: DefaultTypes.ObjectExports;
+  _chosenLocale: string;
+  _events: DefaultTypes.ObjectExports;
+  _eventsCount: number;
+  _getMessages: DefaultTypes.AnyFunction;
+  _getParsedMessages: DefaultTypes.AnyFunction;
+  _handleNewListener: DefaultTypes.AnyFunction;
+  _languages: Array<{
+    code: string;
+    enabled: boolean;
+    englishName: string;
+    name: string;
+    postgresLang: string;
+  }>;
+  _maxListeners: undefined | string;
+  _provider: DefaultTypes.ObjectExports;
+  _requestedLocale: string;
+}
+export interface MessageContentType {
+  type: DefaultTypes.AnyFunction;
+  compare: DefaultTypes.AnyFunction;
+  $$typeof: symbol;
+}
+export interface MessageClassesAndStyles {
+  alt: string;
+  applicationName: string;
+  asianCompactTimeStamp: string;
+  avatar: string;
+  avatarDecoration: string;
+  avatarDecorationSize: string;
+  avatarSize: string;
+  badgesContainer: string;
+  botTag: string;
+  botTagCompact: string;
+  botTagCozy: string;
+  buttonContainer: string;
+  clickable: string;
+  commandIcon: string;
+  commandName: string;
+  communicationDisabled: string;
+  communicationDisabledOpacity: string;
+  compact: string;
+  compactCommunicationDisabled: string;
+  contentOnly: string;
+  contents: string;
+  cozy: string;
+  desaturateUserColors: string;
+  edited: string;
+  executedCommand: string;
+  executedCommandAvatar: string;
+  hasBadges: string;
+  hasReply: string;
+  hasRoleIcon: string;
+  hasThread: string;
+  header: string;
+  headerText: string;
+  isFailed: string;
+  isSending: string;
+  isSystemMessage: string;
+  latin12CompactTimeStamp: string;
+  latin24CompactTimeStamp: string;
+  marginCompactIndent: string;
+  marginHorizontal: string;
+  marginLeftContentCozy: string;
+  markupRtl: string;
+  messageContent: string;
+  messageEditorCompact: string;
+  metaSpace: string;
+  paddingVerticalContainerCompact: string;
+  repliedMessage: string;
+  repliedTextContent: string;
+  repliedTextContentIcon: string;
+  repliedTextPlaceholder: string;
+  repliedTextPreview: string;
+  replyAvatar: string;
+  replyBadge: string;
+  replyIcon: string;
+  replyIndent: string;
+  replyLink: string;
+  replyMessagePreviewLineHeight: string;
+  roleDot: string;
+  roleIcon: string;
+  separator: string;
+  sizeEmoji: string;
+  spacingVerticalContainerCozy: string;
+  systemMessageAccessories: string;
+  threadMessageAccessory: string;
+  threadMessageAccessoryAvatar: string;
+  threadMessageAccessoryContent: string;
+  threadMessageAccessoryContentIcon: string;
+  threadMessageAccessoryPlaceholder: string;
+  threadMessageAccessoryPreview: string;
+  ticketIcon: string;
+  timestamp: string;
+  timestampInline: string;
+  timestampTooltip: string;
+  timestampVisibleOnHover: string;
+  userJoinSystemMessageIcon: string;
+  username: string;
+  wrapper: string;
+  zalgo: string;
+}
 export interface GenericModule {
   [key: string]: DefaultTypes.AnyFunction;
 }
