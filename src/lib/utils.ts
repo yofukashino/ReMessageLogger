@@ -1,5 +1,5 @@
-import { common } from "replugged";
-import { SettingValues } from "../index";
+import { common, util } from "replugged";
+import { PluginInjector, SettingValues } from "../index";
 import * as Types from "../types";
 import * as lodash from "lodash";
 const { React } = common;
@@ -45,6 +45,17 @@ export const isObject = (testMaterial: unknown): boolean =>
 
 export const hasProps = (mod: object, props: string[] | unknown[]): boolean =>
   isObject(mod) && props.every((prop: string | unknown) => Object.hasOwnProperty.call(mod, prop));
+
+export const forceUpdate = (element: Element): void => {
+  if (!element) return;
+  const toForceUpdate = util.getOwnerInstance(element);
+  const forceRerender = PluginInjector.instead(toForceUpdate, "render", () => {
+    forceRerender();
+    return null;
+  });
+
+  toForceUpdate.forceUpdate(() => toForceUpdate.forceUpdate(() => {}));
+};
 
 export const useSetting = (
   settingsManager: typeof SettingValues,

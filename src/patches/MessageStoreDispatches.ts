@@ -25,6 +25,8 @@ export const patchMessageStoreDispatches = (): void => {
     (args: [Types.deleteData]) => {
       const messageCahce = MessageLoggerApi.handleDelete(args[0], true);
       MessageDataStore.commit(messageCahce);
+      for (const id of args[0].ids)
+        Utils.forceUpdate(document.querySelector(`[aria-labelledby*="message-content-${id}"]`));
     },
   );
 
@@ -36,6 +38,9 @@ export const patchMessageStoreDispatches = (): void => {
       if (messageCahce === null || !messageCahce.has(args[0].message.id)) return false;
       const editedmessageCahce = MessageLoggerApi.handleEdit(args[0], messageCahce);
       MessageDataStore.commit(editedmessageCahce);
+      Utils.forceUpdate(
+        document.querySelector(`[aria-labelledby*="message-content-${args[0].message.id}"]`),
+      );
     },
   );
 };

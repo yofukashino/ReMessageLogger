@@ -401,6 +401,7 @@ export interface GenericExport {
   exports: GenericModule;
 }
 export interface Settings {
+  deleteStyle: string;
   ignoreSelf: boolean;
   ignoreBots: boolean;
   ignorePurges: boolean;

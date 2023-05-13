@@ -1,4 +1,5 @@
-import { PluginInjector } from "../index";
+import { PluginInjector, SettingValues } from "../index";
+import { defaultSettings } from "../lib/consts";
 import { MessageContentType } from "../lib/requiredModules";
 import * as MessageLoggerApi from "../lib/MessageLoggerApi";
 import * as Types from "../types";
@@ -13,6 +14,10 @@ export const patchMessageContents = (): void => {
           : null,
         ...res.props.children,
       ];
+      res.props.className +=
+        SettingValues.get("deleteStyle", defaultSettings.deleteStyle) === "text"
+          ? " deleteText"
+          : " delteOverlay";
       return res;
     },
   );

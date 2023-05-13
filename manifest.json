@@ -1,5 +1,5 @@
 {
-  "id": "Tharki.ReMessageLogger",
+  "id": "dev.tharki.ReMessageLogger",
   "name": "ReMessageLogger",
   "description": "Saves all deleted and purged messages, as well as all edit history and ghost pings. (For Features, Check plugin settings.)",
   "author": {

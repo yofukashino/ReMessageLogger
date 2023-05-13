@@ -10,13 +10,18 @@
 .reMessageLoggerDeleted:hover h3 {
   filter: grayscale(0);
 }
-.reMessageLoggerDeleted .messageContent-2t3eCI {
+.reMessageLoggerDeleted .deleteText {
   color: #f04747;
 }
-.reMessageLoggerDeleted:hover .messageContent-2t3eCI {
+.reMessageLoggerDeleted:hover .deleteText {
   color: #ffffff !important;
 }
-
+.reMessageLoggerDeleted .delteOverlay {
+  background-color: rgba(255, 75, 75, 0.25);
+}
+.reMessageLoggerDeleted:hover .delteOverlay {
+  background-color: rgba(0, 0, 0, 0);
+}
 .theme-dark .messagelogger-edited {
   filter: brightness(75%);
 }
