@@ -1,4 +1,4 @@
-### ReMessageLogger (NOT WORKING YET)
+### ReMessageLogger (NEVER WILL WORK, ABANDONED)
 
 Temporarily logs deleted and edited messages.
 
